@@ -1,25 +1,17 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['module', 'angular'], factory);
+    define(['module'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(module, require('angular'));
+    factory(module);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod, global.angular);
+    factory(mod);
     global.angularWebsocketMock = mod.exports;
   }
-})(this, function (module, _angular) {
+})(this, function (module) {
   'use strict';
-
-  var _angular2 = _interopRequireDefault(_angular);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
 
   function $WebSocketBackend() {
     var connectQueue = [];
@@ -131,9 +123,9 @@
     };
   } // end $WebSocketBackend
 
-  _angular2.default.module('ngWebSocketMock', []).service('WebSocketBackend', $WebSocketBackend).service('$websocketBackend', $WebSocketBackend);
+  angular.module('ngWebSocketMock', []).service('WebSocketBackend', $WebSocketBackend).service('$websocketBackend', $WebSocketBackend);
 
-  _angular2.default.module('angular-websocket-mock', ['ngWebSocketMock']);
+  angular.module('angular-websocket-mock', ['ngWebSocketMock']);
 
-  module.exports = _angular2.default.module('ngWebSocketMock');
+  module.exports = angular.module('ngWebSocketMock');
 });
